@@ -1,0 +1,36 @@
+columns:
+  Aberturas Difusor: float
+  Atuador Damper: object
+  Cabeceira Difusor: object
+  Caixa Plenum Difusor: object
+  Classificacao Filtro: object
+  Comprimento: float
+  Construcao MFP: object
+  Contra Peso: float
+  Data: object
+  Descricao: object
+  Espessura: float
+  Fator: float
+  Filtro VDF: object
+  Largura: float
+  Linha: object
+  Modelo: object
+  Moldura: object
+  N Celula Atenuador: float
+  Perfil Cantoneira VSD: float
+  Peso: float
+  Pintura: object
+  Preço Unitário: object
+  Produto: object
+  Qnt: float
+  Registro: object
+  Registro no Colarinho: object
+  Tamanho Celula Atenuador: float
+  Tamanho Difusor: float
+  Tipo Acionamento Damper: object
+  Total: float
+  Vedacao MFP: object
+  Veneziana VDF: object
+  Versao Filtro: object
+  Volume: float
+  Ângulo: float
