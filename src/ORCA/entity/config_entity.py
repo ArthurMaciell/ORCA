@@ -16,3 +16,9 @@ class DataValidationConfig:
     status_file: str
     data_file_path: Path
     all_schema: dict
+    
+@dataclass(frozen=True)
+class DataTransformationConfig:
+    root_dir: Path
+    transformed_data_path: Path
+

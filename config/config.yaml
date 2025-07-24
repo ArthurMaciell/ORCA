@@ -10,3 +10,7 @@ data_validation:
   data_file_path: artifacts/data_ingestion/itens.xlsx
   status_file: artifacts/data_validation/status.txt
 
+data_transformation:
+  root_dir: artifacts/data_transformation
+  transformed_data_path: artifacts/data_transformation/df_encoded_ar.xlsx
+
