@@ -9,6 +9,8 @@ from box import ConfigBox
 from pathlib import Path
 from typing import Any
 from beartype import beartype
+import pandas as pd
+
 
 
 
@@ -127,6 +129,23 @@ def get_size(path: Path) -> str:
     """
     size_in_kb = round(os.path.getsize(path)/1024)
     return f"~ {size_in_kb} KB"
+
+
+def write_text(path, text):
+    with open(path, 'w') as f:
+        f.write(text)
+
+def is_dtype_compatible(col_dtype, expected_type):
+    if expected_type == "float":
+        return pd.api.types.is_float_dtype(col_dtype)
+    elif expected_type == "int":
+        return pd.api.types.is_integer_dtype(col_dtype)
+    elif expected_type == "object":
+        return pd.api.types.is_object_dtype(col_dtype)
+    elif expected_type == "bool":
+        return pd.api.types.is_bool_dtype(col_dtype)
+    else:
+        return False
 
 
 
