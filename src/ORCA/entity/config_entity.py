@@ -7,3 +7,12 @@ from dataclasses import dataclass
 class DataIngestionConfig:
     root_dir: Path
     local_data_file: Path
+    
+
+
+@dataclass(frozen=True)
+class DataValidationConfig:
+    root_dir: Path
+    status_file: str
+    data_file_path: Path
+    all_schema: dict

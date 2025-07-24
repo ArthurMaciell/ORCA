@@ -131,11 +131,13 @@ def get_size(path: Path) -> str:
     return f"~ {size_in_kb} KB"
 
 
-def write_text(path, text):
+@beartype
+def write_text(path: Path, text: str):
     with open(path, 'w') as f:
         f.write(text)
 
-def is_dtype_compatible(col_dtype, expected_type):
+@beartype
+def is_dtype_compatible(col_dtype, expected_type: str) -> bool:
     if expected_type == "float":
         return pd.api.types.is_float_dtype(col_dtype)
     elif expected_type == "int":
