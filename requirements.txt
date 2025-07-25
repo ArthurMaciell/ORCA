@@ -19,4 +19,7 @@ types-PyYAML
 Flask
 Flask-Cors
 beartype
+statsmodels
+xgboost
+optuna
 -e .

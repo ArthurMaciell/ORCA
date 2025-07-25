@@ -21,4 +21,5 @@ class DataValidationConfig:
 class DataTransformationConfig:
     root_dir: Path
     transformed_data_path: Path
+    data_input_path: str
 

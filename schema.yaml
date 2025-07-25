@@ -34,3 +34,6 @@ columns:
   Versao Filtro: object
   Volume: float
   Ângulo: float
+
+TARGET_COLUMN:
+  name: Preço(1)

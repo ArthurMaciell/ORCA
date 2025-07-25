@@ -36,16 +36,16 @@ class DataTransformation:
         # Converter Preço Unitário e Fator
         df['Preço Unitário'] = pd.to_numeric(df['Preço Unitário'], errors='coerce')
         df['Fator'] = pd.to_numeric(df['Fator'], errors='coerce')
-        df['Preço (1)'] = df['Preço Unitário'] / df['Fator']
+        df['Preco (1)'] = df['Preço Unitário'] / df['Fator']
 
         # Ajuste de preço por ano
-        df.loc[df['Data'].dt.year == 2022, 'Preço (1)'] *= 1.20
-        df.loc[df['Data'].dt.year == 2023, 'Preço (1)'] *= 1.10
-        df.loc[df['Data'].dt.year == 2024, 'Preço (1)'] *= 1.15
+        df.loc[df['Data'].dt.year == 2022, 'Preco (1)'] *= 1.20
+        df.loc[df['Data'].dt.year == 2023, 'Preco (1)'] *= 1.10
+        df.loc[df['Data'].dt.year == 2024, 'Preco (1)'] *= 1.15
 
         # Categorizar preços
-        q1 = df['Preço (1)'].quantile(0.33)
-        q2 = df['Preço (1)'].quantile(0.66)
+        q1 = df['Preco (1)'].quantile(0.33)
+        q2 = df['Preco (1)'].quantile(0.66)
 
         def categorize_price(price):
             if price <= q1:
@@ -55,7 +55,7 @@ class DataTransformation:
             else:
                 return 'High'
 
-        df['preço_categoria'] = df['Preço (1)'].apply(categorize_price)
+        df['preco_categoria'] = df['Preco (1)'].apply(categorize_price)
 
         # Comprimento / Largura
         df["Comprimento/Largura"] = df["Comprimento"] / df["Largura"].replace(0, np.nan)
