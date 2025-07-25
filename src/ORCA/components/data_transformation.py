@@ -95,6 +95,9 @@ class DataTransformation:
     def train_test_spliting(self):
         df = pd.read_excel(self.config.data_input_path)
         df_ar, df_encoded_ar, _, _ = self.prepare_dataframe(df)
+        
+        # Salvar o dataframe codificado completo
+        df_encoded_ar.to_excel(self.config.transformed_data_path, index=False)
 
         # Split the data into training and test sets. (0.75, 0.25) split.
         train, test = train_test_split(df_encoded_ar, test_size=0.2, random_state=42)
