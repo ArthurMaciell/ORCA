@@ -61,13 +61,13 @@ open up you local host and port
 ### dagshub
 [dagshub](https://dagshub.com/)
 
-MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/mlflow.mlflow \
+MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/ORCA.mlflow \
 MLFLOW_TRACKING_USERNAME=ArthurMaciell \
-MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0 \
+MLFLOW_TRACKING_PASSWORD=9ba42c98aca839c1595d1086f91d6985efa8d261 \
 python script.py
 
 import dagshub
-dagshub.init(repo_owner='ArthurMaciell', repo_name='mlflow', mlflow=True)
+dagshub.init(repo_owner='ArthurMaciell', repo_name='ORCA', mlflow=True)
 
 import mlflow
 with mlflow.start_run():
@@ -78,11 +78,11 @@ Run this to export as env variables:
 
 ```bash
 
-export MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/mlflow.mlflow
+export MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/ORCA.mlflow
 
 export MLFLOW_TRACKING_USERNAME=ArthurMaciell
 
-export MLFLOW_TRACKING_PASSWORD=6824692c47a369aa6f9eac5b10041d5c8edbcef0
+export MLFLOW_TRACKING_PASSWORD=9ba42c98aca839c1595d1086f91d6985efa8d261
 
 ```
 
