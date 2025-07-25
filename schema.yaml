@@ -36,4 +36,4 @@ columns:
   Ângulo: float
 
 TARGET_COLUMN:
-  name: Preço(1)
+  name: Preco (1)
