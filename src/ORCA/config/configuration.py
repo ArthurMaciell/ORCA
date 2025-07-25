@@ -48,12 +48,14 @@ class ConfigurationManager:
     
     def get_data_transformation_config(self) -> DataTransformationConfig:
         config = self.config.data_transformation
+        input_data_path = self.config.data_ingestion.local_data_file
 
         create_directories([config.root_dir])
 
         data_transformation_config = DataTransformationConfig(
             root_dir=config.root_dir,
             transformed_data_path=config.transformed_data_path,
+            data_input_path=input_data_path
         )
 
         return data_transformation_config
