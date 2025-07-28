@@ -38,6 +38,7 @@ class PredictionPipeline:
     def predict(self, data):
         data_preparado = self.preprocess_input(data)
         prediction = self.model.predict(data_preparado)
+        prediction = np.expm1(prediction)
         
         return prediction
 
