@@ -47,8 +47,10 @@ def index():
 
             obj = PredictionPipeline()
             predict = obj.predict(data)
-            valor = round(float(predict[0]), 2)
-            return render_template('results.html', prediction=f"R$ {valor:,.2f}")
+            # Formatando o valor com duas casas decimais e separador de milhar
+            valor_formatado = f"R$ {predict[0]:,.2f}".replace(',', 'X').replace('.', ',').replace('X', '.')
+
+            return render_template('results.html', prediction=valor_formatado)
 
         except Exception as e:
             print('The Exception message is: ',e)
