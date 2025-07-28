@@ -54,6 +54,6 @@ class ModelTrainer:
             objective='reg:squarederror'
         )
         model.fit(train_x, y_train_log)
-
+        joblib.dump(train_x.columns.tolist(), "artifacts/model_trainer/dummy_columns.pkl")
         joblib.dump(model, os.path.join(self.config.root_dir, self.config.model_name))
 

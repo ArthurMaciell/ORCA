@@ -83,11 +83,11 @@ class DataTransformation:
 
         if 'Moldura' in df.columns:
             df['Moldura'] = df['Moldura'].fillna("Ausente")
-
+            
+            
         # Remover duplicadas
         df_encoded = pd.get_dummies(df)
         df_encoded = df_encoded.drop_duplicates()
-        joblib.dump(df_encoded.columns.tolist(), 'artifacts/model_trainer/dummy_columns.pkl')
         
         logger.info(f"DataFrame preparado com shape: {df.shape} | Codificado: {df_encoded.shape}")
 
