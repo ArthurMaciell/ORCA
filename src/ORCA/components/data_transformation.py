@@ -9,6 +9,7 @@ from sklearn.model_selection import train_test_split
 import pandas as pd
 from typing import Tuple, List
 import numpy as np
+import joblib
 
 class DataTransformation:
     def __init__(self, config: DataTransformationConfig):
@@ -86,6 +87,7 @@ class DataTransformation:
         # Remover duplicadas
         df_encoded = pd.get_dummies(df)
         df_encoded = df_encoded.drop_duplicates()
+        joblib.dump(df_encoded.columns.tolist(), 'artifacts/model_trainer/dummy_columns.pkl')
         
         logger.info(f"DataFrame preparado com shape: {df.shape} | Codificado: {df_encoded.shape}")
 
