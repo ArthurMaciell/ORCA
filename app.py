@@ -30,26 +30,25 @@ def index():
             moldura = request.form['Moldura']
             pintura = request.form['Pintura']
             
-            # Criando DataFrame com os dados coletados
+            # Monta DataFrame com as variáveis esperadas
             data = pd.DataFrame([{
                 'Modelo': modelo,
                 'Registro': registro,
                 'Comprimento': comprimento,
                 'Largura': largura,
                 'Moldura': moldura,
-                'Pintura': pintura
+                'Pintura': pintura,
+                'Area': comprimento * largura,
+                'Comprimento/Largura': comprimento / largura if largura != 0 else 0,
+                'Produto': 'GRELHA DE ALETAS FIXAS'
             }])
-            
-            data['Área'] = comprimento * largura
-            data['Comprimento/Largura'] = comprimento / largura
-            data['Produto'] = 'GRELHA DE ALETAS FIXAS'
-            #data = [fixed_acidity,volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,density,pH,sulphates,alcohol]
-            #data = np.array(data).reshape(1, 11)
-            
+
+            print("COLUNAS NA PREDIÇÃO:", data.columns.tolist())
+
             obj = PredictionPipeline()
             predict = obj.predict(data)
 
-            return render_template('results.html', prediction = str(predict))
+            return render_template('results.html', prediction=str(round(predict, 2)))
 
         except Exception as e:
             print('The Exception message is: ',e)

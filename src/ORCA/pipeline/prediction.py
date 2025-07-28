@@ -5,14 +5,23 @@ from pathlib import Path
 
 
 
+import joblib 
+import numpy as np
+import pandas as pd
+from pathlib import Path
+
+
+
 class PredictionPipeline:
     def __init__(self):
         self.model = joblib.load(Path('artifacts/model_trainer/model.joblib'))
         self.columns = joblib.load(Path('artifacts/model_trainer/dummy_columns.pkl'))
         
     def preprocess_input(self, df):
-        # Remover colunas que não são features (como o alvo)
-        df = df.drop(columns=["Preco (1)"], errors="ignore")
+        df = df.copy()
+        if 'Preco (1)' in df.columns:
+            print('tem preço')
+            df = df.drop(columns=['Preco (1)'])
         # Aplica get_dummies no dado novo
         df_encoded = pd.get_dummies(df)
 
@@ -31,3 +40,4 @@ class PredictionPipeline:
         prediction = self.model.predict(data_preparado)
         
         return prediction
+
