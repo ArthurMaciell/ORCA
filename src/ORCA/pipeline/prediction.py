@@ -11,6 +11,8 @@ class PredictionPipeline:
         self.columns = joblib.load(Path('artifacts/model_trainer/dummy_columns.pkl'))
         
     def preprocess_input(self, df):
+        # Remover colunas que não são features (como o alvo)
+        df = df.drop(columns=["Preco (1)"], errors="ignore")
         # Aplica get_dummies no dado novo
         df_encoded = pd.get_dummies(df)
 
