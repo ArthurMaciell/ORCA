@@ -41,8 +41,8 @@ class DataTransformation:
 
         # Ajuste de preço por ano
         df.loc[df['Data'].dt.year == 2022, 'Preco (1)'] *= 1.20
-        df.loc[df['Data'].dt.year == 2023, 'Preco (1)'] *= 1.10
-        df.loc[df['Data'].dt.year == 2024, 'Preco (1)'] *= 1.15
+        df.loc[df['Data'].dt.year == 2023, 'Preco (1)'] *= 1.15
+        df.loc[df['Data'].dt.year == 2024, 'Preco (1)'] *= 1.10
 
         # Categorizar preços
         q1 = df['Preco (1)'].quantile(0.33)
