@@ -30,7 +30,7 @@ class DataTransformation:
         # Calcular Área
         df["Area"] = df["Comprimento"] * df["Largura"]
         df["Area"] = df["Area"].replace([np.inf, -np.inf], np.nan)
-        df["AreaAusente"] = df["Area"].isna()
+        #df["AreaAusente"] = df["Area"].isna()
         df["Area"] = df["Area"].fillna(0)
 
         # Converter Preço Unitário e Fator
@@ -55,7 +55,7 @@ class DataTransformation:
             else:
                 return 'High'
 
-        df['preco_categoria'] = df['Preco (1)'].apply(categorize_price)
+        #df['preco_categoria'] = df['Preco (1)'].apply(categorize_price)
 
         # Comprimento / Largura
         df["Comprimento/Largura"] = df["Comprimento"] / df["Largura"].replace(0, np.nan)
@@ -70,7 +70,7 @@ class DataTransformation:
 
         # Remover colunas completamente vazias
         colunas_vazias = df.columns[df.isna().all()].tolist()
-        colunas_tirar = ['Descricao', 'Linha', 'Data', 'Qnt', 'Fator', 'Total', 'Peso', 'Volume', 'Preço Unitário']
+        colunas_tirar = ['Descricao', 'Linha', 'Data', 'Qnt', 'Fator', 'Total', 'Peso', 'Volume', 'Preço Unitário',]
         df = df.drop(columns=colunas_vazias + colunas_tirar, errors='ignore')
 
         # Tratar valores ausentes

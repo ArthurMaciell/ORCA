@@ -22,27 +22,27 @@ def training():
 def index():
     if request.method == 'POST':
         try:
-            #  reading the inputs given by the user
-            fixed_acidity =float(request.form['fixed_acidity'])
-            volatile_acidity =float(request.form['volatile_acidity'])
-            citric_acid =float(request.form['citric_acid'])
-            residual_sugar =float(request.form['residual_sugar'])
-            chlorides =float(request.form['chlorides'])
-            free_sulfur_dioxide =float(request.form['free_sulfur_dioxide'])
-            total_sulfur_dioxide =float(request.form['total_sulfur_dioxide'])
-            density =float(request.form['density'])
-            pH =float(request.form['pH'])
-            sulphates =float(request.form['sulphates'])
-            alcohol =float(request.form['alcohol'])
+            # Coleta dos dados do formulário
+            modelo = request.form['Modelo']
+            registro = request.form['Registro']
+            comprimento = float(request.form['Comprimento'])
+            largura = float(request.form['Largura'])
+            moldura = request.form['Moldura']
+            pintura = request.form['Pintura']
             
-            feature_names = ['fixed acidity', 'volatile acidity', 'citric acid', 'residual sugar',
-                'chlorides', 'free sulfur dioxide', 'total sulfur dioxide', 'density',
-                'pH', 'sulphates', 'alcohol']
-
-            data = pd.DataFrame([[fixed_acidity, volatile_acidity, citric_acid, residual_sugar,
-                    chlorides, free_sulfur_dioxide, total_sulfur_dioxide, density,
-                    pH, sulphates, alcohol]],
-                    columns=feature_names)
+            # Criando DataFrame com os dados coletados
+            data = pd.DataFrame([{
+                'Modelo': modelo,
+                'Registro': registro,
+                'Comprimento': comprimento,
+                'Largura': largura,
+                'Moldura': moldura,
+                'Pintura': pintura
+            }])
+            
+            data['Área'] = comprimento * largura
+            data['Comprimento/Largura'] = comprimento / largura
+            data['Produto'] = 'GRELHA DE ALETAS FIXAS'
             #data = [fixed_acidity,volatile_acidity,citric_acid,residual_sugar,chlorides,free_sulfur_dioxide,total_sulfur_dioxide,density,pH,sulphates,alcohol]
             #data = np.array(data).reshape(1, 11)
             
