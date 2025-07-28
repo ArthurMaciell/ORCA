@@ -49,53 +49,68 @@
         </header>
 
 
-<!-- Main Content-->
-<div class="container px-4 px-lg-5 form-v9">
-    <div class="page-content">
-        <div class="form-v9-content" style="background-image: url('static/assets/img/form-v9.jpg')">
-            <form class="form-detail" action="/predict" method="post">
-                <h2>Preencha os dados para prever o preço</h2>
+        <!-- Main Content-->
+        <div class="container px-4 px-lg-5">
 
-                <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="Modelo">Modelo:</label>
-                        <input type="text" name="Modelo" id="Modelo" class="input-text" required>
-                    </div>
-                    <div class="form-row">
-                        <label for="Registro">Registro:</label>
-                        <input type="text" name="Registro" id="Registro" class="input-text" required>
-                    </div>
-                </div>
+            <!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Form-v9 by Colorlib</title>
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	<!-- Font-->
+	<link rel="stylesheet" type="text/css" href="static/css2/nunito-font.css">
+	<!-- Main Style Css -->
+    <link rel="stylesheet" href="static/css2/style.css"/>
+</head>
+<body class="form-v9">
+	<div class="page-content">
+		<div class="form-v9-content" style="background-image: url('static/assets/img/form-v9.jpg')">
+        <form class="form-detail" action="/predict" method="post">
+            <h2>Preencha os dados para prever o preço</h2>
 
-                <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="Comprimento">Comprimento:</label>
-                        <input type="number" name="Comprimento" id="Comprimento" class="input-text" step="0.01" required>
-                    </div>
-                    <div class="form-row">
-                        <label for="Largura">Largura:</label>
-                        <input type="number" name="Largura" id="Largura" class="input-text" step="0.01" required>
-                    </div>
+            <div class="form-row-total">
+                <div class="form-row">
+                    <label for="Modelo">Modelo:</label>
+                    <input type="text" name="Modelo" id="Modelo" class="input-text" required>
                 </div>
+                <div class="form-row">
+                    <label for="Registro">Registro:</label>
+                    <input type="text" name="Registro" id="Registro" class="input-text" required>
+                </div>
+            </div>
 
-                <div class="form-row-total">
-                    <div class="form-row">
-                        <label for="Moldura">Moldura:</label>
-                        <input type="text" name="Moldura" id="Moldura" class="input-text" required>
-                    </div>
-                    <div class="form-row">
-                        <label for="Pintura">Pintura:</label>
-                        <input type="text" name="Pintura" id="Pintura" class="input-text" required>
-                    </div>
+            <div class="form-row-total">
+                <div class="form-row">
+                    <label for="Comprimento">Comprimento:</label>
+                    <input type="number" name="Comprimento" id="Comprimento" class="input-text" step="0.01" required>
                 </div>
+                <div class="form-row">
+                    <label for="Largura">Largura:</label>
+                    <input type="number" name="Largura" id="Largura" class="input-text" step="0.01" required>
+                </div>
+            </div>
 
-                <div class="form-row-last">
-                    <input type="submit" name="register" class="register" value="Prever Preço">
+            <div class="form-row-total">
+                <div class="form-row">
+                    <label for="Moldura">Moldura:</label>
+                    <input type="text" name="Moldura" id="Moldura" class="input-text" required>
                 </div>
-            </form>
-        </div>
-    </div>
-</div>
+                <div class="form-row">
+                    <label for="Pintura">Pintura:</label>
+                    <input type="text" name="Pintura" id="Pintura" class="input-text" required>
+                </div>
+            </div>
+
+            <div class="form-row-last">
+                <input type="submit" name="register" class="register" value="Prever Preço">
+            </div>
+        </form>
+		</div>
+	</div>
+</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+</html>
 
         </div>
 

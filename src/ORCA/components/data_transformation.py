@@ -40,9 +40,12 @@ class DataTransformation:
         df['Preco (1)'] = df['Preço Unitário'] / df['Fator']
 
         # Ajuste de preço por ano
-        df.loc[df['Data'].dt.year == 2022, 'Preco (1)'] *= 1.20
+        df.loc[df['Data'].dt.year == 2022, 'Preco (1)'] *= 1.25
         df.loc[df['Data'].dt.year == 2023, 'Preco (1)'] *= 1.15
-        df.loc[df['Data'].dt.year == 2024, 'Preco (1)'] *= 1.10
+        df.loc[df['Data'].dt.year == 2024, 'Preco (1)'] *= 1.00
+        
+        df = df[df['Data'].dt.year != 2022]
+        df = df[df['Data'].dt.year != 2023]
 
         # Categorizar preços
         q1 = df['Preco (1)'].quantile(0.33)
