@@ -164,7 +164,7 @@ Documentação oficial: [https://mlflow.org](https://mlflow.org)
 ## 👨‍💻 Autor
 
 **Arthur Maciel**  
-[GitHub](https://github.com/ArthurMaciell) • [LinkedIn](https://www.linkedin.com/in/arthurmaciell)
+[GitHub](https://github.com/ArthurMaciell) • [LinkedIn](https://www.linkedin.com/in/arthur-maciel6325)
 
 ---
 
