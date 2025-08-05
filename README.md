@@ -1,172 +1,173 @@
-# ORCA
 
-## Workflows
+# 🐳 ORCA — Orçamento com IA
 
-1. Update config.yaml
-2. Update schema.yaml
-3. Update params.yaml
-4. Update the entity
-5. Update the configuration manager in src config
-6. Update the components
-7. Update the pipeline 
-8. Update the main.py
-9. Update the app.py
+ORCA é uma aplicação inteligente para automação de orçamentos utilizando machine learning. Ela integra workflows de MLOps com rastreamento de experimentos via MLflow e deploy utilizando AWS e GitHub Actions.
 
+---
 
-# How to run?
-### STEPS:
+## 📁 Estrutura de Workflows
 
-Clone the repository
+Para fazer alterações no pipeline:
+
+1. Atualize `config.yaml`
+2. Atualize `schema.yaml`
+3. Atualize `params.yaml`
+4. Atualize a entidade no diretório `entity/`
+5. Atualize o configuration manager em `src/config/`
+6. Atualize os componentes
+7. Atualize o pipeline
+8. Atualize `main.py`
+9. Atualize `app.py` (interface/execução)
+
+---
+
+## ▶️ Como executar o projeto
+
+### 1. Clone o repositório
 
 ```bash
-https://github.com/ArthurMaciell/ORCA
+git clone https://github.com/ArthurMaciell/ORCA.git
+cd ORCA
 ```
-### STEP 01- Create a conda environment after opening the repository
+
+### 2. Crie e ative o ambiente Conda
 
 ```bash
 conda create -n mlproj python=3.8 -y
-```
-
-```bash
 conda activate mlproj
 ```
 
+### 3. Instale as dependências
 
-### STEP 02- install the requirements
 ```bash
 pip install -r requirements.txt
 ```
 
+### 4. Execute a aplicação
 
 ```bash
-# Finally run the following command
 python app.py
 ```
 
-Now,
-```bash
-open up you local host and port
+Acesse no seu navegador:
+
+```
+http://localhost:8501
 ```
 
+---
 
+## 📊 MLflow Tracking
 
-## MLflow
+### Interface local
 
-[Documentation](https://mlflow.org/docs/latest/index.html)
+Execute o comando abaixo para abrir o MLflow UI localmente:
 
+```bash
+mlflow ui
+```
 
-##### cmd
-- mlflow ui
+Acesse: http://localhost:5000
 
-### dagshub
-[dagshub](https://dagshub.com/)
+### Tracking remoto com DagsHub
 
-MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/ORCA.mlflow \
-MLFLOW_TRACKING_USERNAME=ArthurMaciell \
-MLFLOW_TRACKING_PASSWORD=9ba42c98aca839c1595d1086f91d6985efa8d261 \
-python script.py
+Você pode rastrear os experimentos remotamente no [DagsHub](https://dagshub.com/).
 
+#### Inicialização via script:
+
+```python
 import dagshub
 dagshub.init(repo_owner='ArthurMaciell', repo_name='ORCA', mlflow=True)
 
 import mlflow
 with mlflow.start_run():
-  mlflow.log_param('parameter name', 'value')
-  mlflow.log_metric('metric name', 1)
-
-Run this to export as env variables:
-
-```bash
-
-export MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/ORCA.mlflow
-
-export MLFLOW_TRACKING_USERNAME=ArthurMaciell
-
-export MLFLOW_TRACKING_PASSWORD=9ba42c98aca839c1595d1086f91d6985efa8d261
-
+	mlflow.log_param('parameter_name', 'value')
+	mlflow.log_metric('metric_name', 1)
 ```
 
+#### Configurar variáveis de ambiente:
 
+```bash
+export MLFLOW_TRACKING_URI=https://dagshub.com/ArthurMaciell/ORCA.mlflow
+export MLFLOW_TRACKING_USERNAME=ArthurMaciell
+export MLFLOW_TRACKING_PASSWORD=SEU_TOKEN_AQUI
+```
 
-# AWS-CICD-Deployment-with-Github-Actions
+---
 
-## 1. Login to AWS console.
+## 🚀 Deploy com AWS + GitHub Actions
 
-## 2. Create IAM user for deployment
+### 1. Acesse o console da AWS
 
-	#with specific access
+### 2. Crie um usuário IAM com permissões:
 
-	1. EC2 access : It is virtual machine
+- `AmazonEC2FullAccess`
+- `AmazonEC2ContainerRegistryFullAccess`
 
-	2. ECR: Elastic Container registry to save your docker image in aws
+### 3. Crie um repositório no ECR
 
+Anote a URI, ex.:
 
-	#Description: About the deployment
+```
+897722662134.dkr.ecr.us-east-1.amazonaws.com/orca
+```
 
-	1. Build docker image of the source code
+### 4. Crie uma instância EC2 (Ubuntu)
 
-	2. Push your docker image to ECR
+### 5. Instale o Docker na instância:
 
-	3. Launch Your EC2 
+```bash
+sudo apt update && sudo apt upgrade -y
+curl -fsSL https://get.docker.com -o get-docker.sh
+sudo sh get-docker.sh
+sudo usermod -aG docker ubuntu
+newgrp docker
+```
 
-	4. Pull Your image from ECR in EC2
+### 6. Configure EC2 como runner do GitHub:
 
-	5. Lauch your docker image in EC2
+No GitHub: `Settings > Actions > Runners > New self-hosted runner`  
+Siga as instruções para configurar.
 
-	#Policy:
+### 7. Configure os segredos no GitHub (`Settings > Secrets > Actions`)
 
-	1. AmazonEC2ContainerRegistryFullAccess
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION` (ex: `us-east-1`)
+- `AWS_ECR_LOGIN_URI`
+- `ECR_REPOSITORY_NAME`
 
-	2. AmazonEC2FullAccess
+---
 
-	
-## 3. Create ECR repo to store/save docker image
-    - Save the URI: 897722662134.dkr.ecr.us-east-1.amazonaws.com/mlflowproj
+## 📚 Sobre o MLflow
 
-	
-## 4. Create EC2 machine (Ubuntu) 
+MLflow é uma ferramenta de rastreamento de experimentos de Machine Learning que permite:
 
-## 5. Open EC2 and Install docker in EC2 Machine:
-	
-	
-	#optinal
+- Armazenar métricas e parâmetros
+- Versionar modelos
+- Reproduzir experimentos
+- Fazer deploy de modelos de forma integrada
 
-	sudo apt-get update -y
+Documentação oficial: [https://mlflow.org](https://mlflow.org)
 
-	sudo apt-get upgrade
-	
-	#required
+---
 
-	curl -fsSL https://get.docker.com -o get-docker.sh
+## 📌 Status do Projeto
 
-	sudo sh get-docker.sh
+✔️ Estrutura de MLOps funcional  
+✔️ Treinamento e tracking com MLflow  
+✔️ Interface com `app.py` para uso interno  
+🚧 Automatização de deploy em andamento
 
-	sudo usermod -aG docker ubuntu
+---
 
-	newgrp docker
-	
-# 6. Configure EC2 as self-hosted runner:
-    setting>actions>runner>new self hosted runner> choose os> then run command one by one
+## 👨‍💻 Autor
 
+**Arthur Maciel**  
+[GitHub](https://github.com/ArthurMaciell) • [LinkedIn](https://www.linkedin.com/in/arthurmaciell)
 
-# 7. Setup github secrets:
+---
 
-    AWS_ACCESS_KEY_ID=
+## 📄 Licença
 
-    AWS_SECRET_ACCESS_KEY=
-
-    AWS_REGION = us-east-1
-
-    AWS_ECR_LOGIN_URI = demo>>  566373416292.dkr.ecr.ap-south-1.amazonaws.com
-
-    ECR_REPOSITORY_NAME = simple-app
-
-
-
-
-## About MLflow 
-MLflow
-
- - Its Production Grade
- - Trace all of your expriements
- - Logging & tagging your model
+Este projeto está sob a licença MIT. Veja o arquivo [LICENSE](LICENSE) para mais detalhes.
